@@ -1,7 +1,8 @@
 export class Game {
   constructor(canvas, fps = 60) {
     this.canvas = canvas;
-    this.ctx = canvas.getContext('2d');
+    // this.ctx is removed because subclasses might want WebGL (Three.js) instead of 2d.
+    // The Renderer or ThreeRenderer should handle the context.
     this.fps = fps;
     this.interval = 1000 / fps;
     this.lastTime = 0;
