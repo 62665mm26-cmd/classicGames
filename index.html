@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic Web Games</title>
+    <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Classic Games Engine</h1>
+            <nav>
+                <button id="btn-snake" class="active">Snake</button>
+                <!-- Future games can be added here -->
+            </nav>
+        </header>
+
+        <main>
+            <div class="game-container">
+                <canvas id="gameCanvas" width="600" height="400"></canvas>
+            </div>
+            <div class="controls-info">
+                <p><strong>Controls:</strong> Arrow Keys or WASD to move. Space to restart on Game Over.</p>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="src/main.js"></script>
+</body>
+</html>
