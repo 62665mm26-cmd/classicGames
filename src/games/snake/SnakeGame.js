@@ -25,11 +25,13 @@ export class SnakeGame extends Game {
     this.input = new Input();
 
     // UI elements to show score outside of WebGL
-    this.scoreElement = this.createOverlayElement('score', '10px', '20px', 'white', '16px monospace');
-    this.gameOverElement = this.createOverlayElement('gameOver', '50%', '50%', 'red', '24px monospace', true);
+    this.scoreElement = this.createOverlayElement('score', '15px', '20px', 'var(--accent-primary)', '16px var(--font-display)');
+    this.gameOverElement = this.createOverlayElement('gameOver', '50%', '50%', 'var(--accent-secondary)', '28px var(--font-display)', true);
     this.gameOverElement.style.transform = 'translate(-50%, -50%)';
     this.gameOverElement.style.textAlign = 'center';
+    this.gameOverElement.style.textShadow = '0 0 15px var(--accent-secondary)';
     this.gameOverElement.style.display = 'none';
+    this.gameOverElement.style.zIndex = '10'; // Above scanlines
 
     this.reset();
   }
@@ -45,7 +47,8 @@ export class SnakeGame extends Game {
       el.style.color = color;
       el.style.font = font;
       el.style.pointerEvents = 'none';
-      el.style.textShadow = '1px 1px 2px black';
+      el.style.textShadow = '1px 1px 5px black';
+      el.style.zIndex = '10';
 
       // Make sure the canvas container is position: relative
       const container = this.canvas.parentElement;
@@ -104,7 +107,7 @@ export class SnakeGame extends Game {
 
     if (this.snake.checkCollision(this.gridWidth, this.gridHeight)) {
       this.gameOver = true;
-      this.gameOverElement.innerHTML = 'GAME OVER<br><span style="font-size:16px; color:white">Press SPACE to restart</span>';
+      this.gameOverElement.innerHTML = 'GAME OVER<br><span style="font-size:16px; color:var(--text-primary); text-shadow:none; font-family:var(--font-body)">Press SPACE to restart</span>';
       this.gameOverElement.style.display = 'block';
       return;
     }

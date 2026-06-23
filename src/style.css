@@ -1,8 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@500;700&display=swap');
+
 :root {
-  --bg-color: #2c3e50;
-  --text-color: #ecf0f1;
-  --accent-color: #3498db;
-  --canvas-bg: #111;
+  --bg-color: #0A0A0A;
+  --panel-bg: rgba(255, 255, 255, 0.05);
+  --text-primary: #FFFFFF;
+  --text-muted: #A0A0A0;
+  --accent-primary: #00F0FF;
+  --accent-secondary: #FF003C;
+  --canvas-bg: #111111;
+
+  --font-display: 'Orbitron', sans-serif;
+  --font-body: 'Inter', sans-serif;
 }
 
 * {
@@ -12,49 +20,67 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-body);
   background-color: var(--bg-color);
-  color: var(--text-color);
+  color: var(--text-primary);
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  background-image: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #0A0A0A 100%);
 }
 
 .container {
-  max-width: 800px;
+  max-width: 900px;
   width: 100%;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  background: var(--panel-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 h1 {
-  margin-bottom: 15px;
-  color: var(--accent-color);
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+  text-shadow: 0 0 10px var(--accent-primary), 0 0 20px rgba(0, 240, 255, 0.5);
+  letter-spacing: 2px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 }
 
 nav button {
+  font-family: var(--font-display);
   background: transparent;
-  color: var(--text-color);
-  border: 2px solid var(--accent-color);
-  padding: 8px 16px;
-  margin: 0 5px;
-  border-radius: 5px;
+  color: var(--text-primary);
+  border: 2px solid var(--accent-primary);
+  padding: 10px 20px;
+  border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
-  transition: all 0.3s ease;
+  text-transform: uppercase;
+  transition: all 0.2s ease-out;
+  box-shadow: 0 0 5px rgba(0, 240, 255, 0.2);
 }
 
 nav button:hover, nav button.active {
-  background: var(--accent-color);
-  color: white;
+  background: var(--accent-primary);
+  color: #000;
+  box-shadow: 0 0 15px var(--accent-primary);
+  transform: scale(1.05);
 }
 
 main {
@@ -64,11 +90,27 @@ main {
 }
 
 .game-container {
+  position: relative;
   background-color: var(--canvas-bg);
-  border: 4px solid var(--accent-color);
-  border-radius: 5px;
+  border: 2px solid var(--accent-primary);
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3), inset 0 0 30px rgba(0,0,0,0.8);
+}
+
+/* Optional CRT Scanline effect */
+.game-container::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 2;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
 }
 
 canvas {
@@ -76,8 +118,20 @@ canvas {
 }
 
 .controls-info {
-  margin-top: 15px;
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
   font-size: 14px;
-  color: #bdc3c7;
+  color: var(--text-muted);
   text-align: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+.controls-info strong {
+  color: var(--accent-primary);
+  font-family: var(--font-display);
+  letter-spacing: 1px;
 }
